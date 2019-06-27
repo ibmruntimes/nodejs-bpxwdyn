@@ -1,4 +1,4 @@
-const bpxwdyn = require('bpxwdyn');
+const bpxwdyn = require('nodejs-bpxwdyn');
 
 async function foo() {
 
