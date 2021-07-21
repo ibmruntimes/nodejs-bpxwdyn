@@ -26,9 +26,6 @@
   ],
   "author": "ccw",
   "license": "Apache-2.0",
-  "devDependencies": {
-    "node-gyp": "^3.8.0"
-  },
   "dependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.2.1",
