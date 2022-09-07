@@ -1,4 +1,7 @@
 {
+    "variables": {
+        "NODE_VERSION%":"<!(node -p \"process.versions.node.split(\\\".\\\")[0]\")"
+    },
     "targets": [{
         "target_name": "bpxwdyn",
         "include_dirs": [
@@ -9,6 +12,10 @@
             "sources": [
                "addon.cc"
             ],
+          }],
+          [ "NODE_VERSION < 18", {
+            "cflags": [  "-qascii" ],
+            "cflags_cc": [ "-qascii" ]
           }],
         ],
 
