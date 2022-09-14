@@ -1,6 +1,6 @@
 /*
  * Licensed Materials - Property of IBM
- * (C) Copyright IBM Corp. 2019. All Rights Reserved.
+ * (C) Copyright IBM Corp. 2022. All Rights Reserved.
  * US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
  */
 
@@ -152,11 +152,30 @@ int bpxwdyn(const std::string &str, std::string &ddn, std::string &dsn,
   }
   void *r1;
   if (return_vars) {
-    r1 = make_plist(9, parm_string_addr, ddname, dsname, volume, msgtxt[0],
-                    msgtxt[1], msgtxt[2], msgtxt[3], msgtxt[4]);
+    void *__ptr32 * plist =
+        (void *__ptr32 *)__malloc31(9 * sizeof(void *__ptr32));
+    plist[0] = parm_string_addr;
+    plist[1] = ddname;
+    plist[2] = dsname;
+    plist[3] = volume;
+    plist[4] = msgtxt[0];
+    plist[5] = msgtxt[1];
+    plist[6] = msgtxt[2];
+    plist[7] = msgtxt[3];
+    plist[8] = msgtxt[4];
+    *((unsigned int *)&(plist[8])) |= 0x80000000;
+    r1 = plist;
   } else {
-    r1 = make_plist(6, parm_string_addr, msgtxt[0], msgtxt[1], msgtxt[2],
-                    msgtxt[3], msgtxt[4]);
+    void *__ptr32 * plist =
+        (void *__ptr32 *)__malloc31(6 * sizeof(void *__ptr32));
+    plist[0] = parm_string_addr;
+    plist[1] = msgtxt[0];
+    plist[2] = msgtxt[1];
+    plist[3] = msgtxt[2];
+    plist[4] = msgtxt[3];
+    plist[5] = msgtxt[4];
+    *((unsigned int *)&(plist[5])) |= 0x80000000;
+    r1 = plist;
   }
   rc = svc6(&(wa->pgm), r1, wa->dsa);
   if (rc == 0) {
