@@ -14,12 +14,20 @@
 #include <string>
 #include <unistd.h>
 #else
-#error This addon is for ZOS only
+#error This addon is for z/OS only
 #endif
 
 #if ' ' == 0x40
-#error Not compiled with -qascii
+#error Not compiled with -fzos-le-char-mode=ascii
 #endif
+
+// XL-specific NR parameter constraint:
+// https://www.ibm.com/docs/en/zos/3.1.0?topic=statements-inline-assembly-extension
+#if __clang_major__ < 18
+#define BPXW_NR(attr,reg) attr "NR:" #reg
+#else
+#define BPXW_NR(attr,reg) attr "{" #reg "}"
+#endif 
 
 class __ae_runmode {
   int mode;
@@ -93,8 +101,8 @@ static int svc6(void *reg15, void *reg1, void *dsa) {
   __asm(" sam31 \n"
         " svc 6\n"
         " sam64 \n"
-        : "+NR:r15"(reg15)
-        : "NR:r1"(reg1), "NR:r13"(dsa), "NR:r0"(0)
+        : BPXW_NR("+",r15)(reg15)
+        : BPXW_NR("",r1)(reg1), BPXW_NR("",r13)(dsa), BPXW_NR("",r0)(0)
         :);
   return (int)(unsigned long)reg15;
 }

@@ -1,7 +1,7 @@
 {
   "name": "nodejs-bpxwdyn",
-  "version": "1.0.4",
-  "description": "node-js addon to interface BPXWDYN (dynamic allocation)",
+  "version": "1.0.5",
+  "description": "Node.js addon to interface BPXWDYN (dynamic allocation)",
   "main": "index.js",
   "gypfile": true,
   "scripts": {

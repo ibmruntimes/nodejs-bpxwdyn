@@ -9,7 +9,7 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 -->
 
 Before installing, [download and install IBM Open Enterprise SDK for Node.js](https://www.ibm.com/docs/en/sdk-nodejs-zos)
-16 or higher. nodejs-bpxwdyn v1.0.3 or higher is required for Node.js 18 or higher.
+20 or higher. nodejs-bpxwdyn v1.0.3 or higher is required for Node.js 20 or higher.
 
 ### Install
 
